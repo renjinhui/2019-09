@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+
+</html>
+<script>
+    /*
+        1、
+            基本数据额类型  string  number  boolean  null undefined
+            引用数据类型  []  {}  Date Math 正则 function...
+                基本数据类型 是存在了  栈内存中； 操作的是值
+                引用数据类型 是存在了  堆内存中   操作的是地址
+
+        2、
+            typeof  Object.prototype.toString.call()  / constructor  instanceof   
+
+        3、
+            var  let  const  function  //  class  import
+        4、
+            var num = parseFloat('width: 100px')  
+            num ==> NaN  NaN和谁都不想等    NaN === NaN  false
+            typeof NaN  ===>  'number'  
+
+            alert(3);
+
+        5、 只弹一次  结果是9； 考for  
+                        break    跳出整个循环
+                        continue 跳出本次循环
+
+        6、数组的末尾添加项：  ary[ary.length] = 100; ary.push(100); ary.splice(ary.length-1+1,0,100)
+            删除数组中的最后一项  ary.pop()  ary.length--   ary.splice(ary.length-1,1)
+
+        7、 
+            ary.sort(function(a,b){
+                return b-a
+            })  
+            ary.sort((a,b)=>b-a)  
+        8、实现找到数组第n项到第m项(包括n和m)的内容，返回一个新的数组（百度面试题）  
+            第n项的索引是 n-1;第m项的索引是 m-1
+            ary.slice(n-1,m-1); 从索引 n-1 的位置开始拷贝， 到索引 m-1 的位置结束；（不包含 m-1这一项）
+            ary.slice(n-1,m)  ary.slice(n-1,m-1+1)
+        9、var str = '2019-08-19';   // '2019/08/19'
+            str.replace('-','/').replace('-','/')
+            str.replace(/-/g,'/')
+            var ary = str.split('-');
+            ary.join('/')
+        10、[n-m] 之间的随机整数
+            Math.round() // 四舍五入
+            Math.random() // [0-1) 之间的随机数
+            Math.round(Math.random()*(m-n)+n)
+            [2-93]
+            Math.round(Math.rando()*91+2)
+        11、
+            let result = 1+null+true+undefined+'Tencent'+false+undefined+null;
+            1 + null => 1
+            1 + null + true => 2   
+            2 + undefined => NaN 
+        12、
+            A : 3-'1px'?alert(2):alert(3);    NaN ? alert（2） : alert(3) // 0 NaN  '' null undefined
+                alert(3)
+            B ：3+'1px' ?  alert(4) :  alert(3);   '31px' ? alert(4) : alert(3)
+                alert(4) 
+
+        13、
+            document.getElementById('box') 
+            document.getElementsByClassName('box')[0]
+            document.getElementsByTagName('div')[0]
+            document.querySelector('#box')
+            document.querySelectorAll('#box')[0]       
+
+        14、
+            1 3 8 9  nodeType
+            元素节点的 nodeType 1
+            文本节点   3
+            注释节点   8
+            根节点     9
+            previousSibling
+            previousElementSibling 不兼容IE6-8   
+            // 自封过 兼容的 getBro 函数
+
+            document.body    document.documentElement 
+            innerHTML  innerText
+
+            var oDiv = document.createElement('div');
+            oDiv.innerHTML = 'hello world';
+            document.body.appendChild(oDiv);
+
+        16、
+            [] == [] : false
+            ![] == []: 空数组转成布尔是true 取反结果是 false   false == []   0 == 0   true
+
+        17、
+            setTimeout     setInterval
+            clearTimeout   clearInterval
+            setTimeout + 递归   ===》 setInterval
+            异步
+        18、
+            假设法
+            先排序 再取值
+            Math.max(...ary) 
+        19、复制数组
+            ary.slice()
+            ary.slice(0)
+            ary.concat([])     
+            // 使用for循环 + push
+        20、
+            //  ||  前边成立给前边 
+            //  &&  前边成立给后边
+            var a = 1 || 0;
+            var b = 1 && 0;
+            a = 1; b = 0;          
+    */
+    for (var i = 0; i < 10; i += 2) {
+        if (i <= 5) {
+            i++;
+            continue;
+        } else {
+            i += 3;
+            break;
+        }
+        alert(i);
+    }
+    // alert(i);
+
+    var str = '2019-08-19';
+    var ary = str.split('-');
+    console.log(ary)
+    var str2 = ary.join('/');
+    console.log(str2)
+    box.innerHTML = `<button onclick="while(true){alert(666)}">按牛</button>`
+
+    /* 
+        任意数求和   arguments
+
+    */
+    function sum(){
+        var  t = 0;
+        for(var i = 0; i < arguments.length; i++){
+            // arguments[i] // 对应的就是我们的每一个实参
+            // t += arguments[i]  不考虑 不合法的数字
+            // if(typeof arguments[i] == 'number' && !isNaN(arguments[i])){
+            //     // 得是 数字  而且还不能是  NaN;
+            //     t += arguments[i]
+            // }
+            if(!isNaN(arguments[i])){
+                t += arguments[i]/1
+            }    
+
+        }
+        return t
+    }
+    console.log(sum(1,3,'4',NaN,'qqq'))
+
+    function query(str){
+        // 先把str 按照? 拆分； 去后边的那一项
+        var str2 = str.split('?')[1];
+        // 把 str2按照  & 拆分
+        var ary = str2.split('&');
+        // 把ary中的每一项都用 = 拆分； 前项作为属性名  后项作为属性值
+        var obj = {};
+        ary.forEach((v,i)=>{
+            // v 就是数组中的每一项
+            var arr = v.split('=');
+            obj[arr[0]] = arr[1]
+        })
+        return obj;
+    }
+
+    function fn() {
+        var str = '大字符串';
+        var s = ''; // 要去拼接的字符串
+        while(s.length < 4){
+            var n = Math.round(Math.random()*61);
+            if(s.indexOf(str[n])==-1){
+                s += str[n]
+            }
+        }
+        return s;
+    }
+
+
+    // 隔行变色
+    var oLis = document.getElementsByTagName('li');
+    var col = '';
+    for(var i = 0; i < oLis.length; i++){
+        oLis[i].style.background = i%2 ? 'blue' : 'green';
+        oLis[i].myIndex = i;
+        oLis[i].onmouseenter = function(){
+            col = this.style.background;
+            this.style.background = 'black';
+        }
+        oLis[i].onmouseleave = function () {
+            this.style.background = col;
+        }
+        oLis[i].onclick = function(){
+            alert(`我是第${this.myIndex+1}个li`)
+        }
+    }
+
+</script>
