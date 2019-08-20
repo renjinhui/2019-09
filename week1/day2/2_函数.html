@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function fn(a,b,c){
+        // 函数体
+    }
+    var f = function (a,b,c) {
+        // 函数体
+    }
+
+    var f2 = (a,b,c)=>{
+
+    }
+    //  a b c 都是函数的形参
+    f() // 函数名代表的是函数体的地址
+    // 函数的存储过程
+    //  在堆内存中 开辟一个新的地址 把函数体当作字符串存储到该地址中，然后把地址赋给函数名
+    var ary = [1,2,f2];
+    ary[2]()
+    // 函数的执行 其实都是函数体后边紧跟一小括号
+
+    function fn2(a,b,...qqq){
+        return function(){
+            console.log(666)
+        }
+    }
+    // var q = fn2(1,2);
+    fn2()();
+    (function(){
+
+    })()
+    // var a = '123132';
+    // a()
+
+    // arguments 实参集合 // 箭头函数中没有这个关键字
+    // this  在事件绑定中  指的是 当前操作的元素
+    // return  一个是决定函数的运行结果 另一个是打断函数的执行
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        window  是个全局对象；
+        通过 var 声明的变量，会向window中增加一个对应的属性
+
+        let const 声明的变量 不存在变量提升；
+        也就是说不能在 let 之前使用该变量；一使用就报错
+        let 和 const 声明的变量 不会再window中增加对应的属性；
+    */
+    var obj = {
+        age:123
+    }
+    'age' in obj // obj 中有没有 'age'属性；
+    console.log('obj' in window)
+    
+    
+    // let const 
+    // console.log(a)
+    let a = 12;
+    console.log(a);
+    console.log('a' in window)
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // var a = 12;
+    // console.log(a);
+    // console.log(b);
+
+    console.log(a);
+    console.log(b)
+    var a = 12;
+    var b = 13;
+    console.log(a)
+    /* 
+        当页面一打开；JS要从上向下执行的时候，先把整个JS浏览一遍，
+        把其中带var 和 function 的 提前声明一下；
+        var 是只 声明 不定义
+        function  是  声明 + 定义
+    */
+
+
+    /* 
+        变量提升（声）
+        在代码执行之前，会把JS中带有var和function关键字的变量提前声明；
+            对于带var 是只声明 不定义；  给的默认值是 undefined
+            带 function的 既声明 又定义
+            在条件句中的代码，也会进行变量提升，不管条件是否成立，
+                对于带function的变量 这时 只有声明 没有定义；(IE6-8 是既声明又定义的)
+        
+                
+    */
+    var a ; // 声明
+    a = 12; // 定义
+
+
+    console.log(f,f2);
+    // function 声明的函数 在整个代码执行之前； 早就已经存在了;所以在整个JS的任意位置都可以执行
+    f()
+    function f() {
+        console.log(6666)
+    }
+    f()
+
+    // f2()
+    var f2 = function () {
+        console.log(777)
+    }
+    f2()
+
+
+
+    console.log(a1,f6);
+    if(1<2){
+        var a1 = 12;
+        function f6() {
+            
+        }
+    }
+    console.log(a1,f6)
+
+    console.log(a2)
+    for(var i = 0 ; i < 5; i++){
+        var a2 = 6;
+    }
+
+
+    // console.log(q);
+    // function f3() {
+    //     var q = 12;
+    // }
+
+
+</script>
