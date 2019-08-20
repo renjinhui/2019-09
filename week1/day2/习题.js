@@ -1,5 +1,5 @@
 
-//----------------------------
+    //----------------------------
     console.log(a);
     var a=12;
     function fn(){
@@ -12,7 +12,7 @@
     //-------
     console.log(a);
     var a=12;
-    function fn(){
+    function fn(a){
           console.log(a);
           a=13
     }
@@ -21,7 +21,7 @@
     //----------------
     var foo=1;
     function bar(){
-        if(!foo){
+        if(foo){
             var foo=10;
         }
         console.log(foo);
@@ -32,11 +32,12 @@
 
     var n=13;
     function fn(n){
-       alert(n);
+       console.log(n);
        var n=14;
-       alert(n);
+       console.log(n);
     }
     fn(n);
+    console.log(n)
 //----------------------------
     var n = 13;
     function fn(){
@@ -67,6 +68,7 @@
             alert(n);
         }
         b();
+        alert(n)
     }
     a();
     alert(n);

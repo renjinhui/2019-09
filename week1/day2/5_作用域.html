@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
     /*  
@@ -25,12 +28,59 @@
 
 
         全局变量： 在全局声明的变量叫做全局变量
-        私有变量： 在私有作用域声明的变量叫私有变量；
+        私有变量： 在私有作用域声明的变量叫私有变量；形参也是私有变量
 
-        上级作用域
+        上级作用域  外层作用域；查找规律：上级作用域是谁，就看这个函数是在那个作用域声明定义的；
+                对于私有作用域中的某些变量，若没有在私有作用中声明过，那么函数执行时，就会去
+                上级作用域查找该变量，上级作用域若没有该变量，则接着向上级查找，直到查找到
+                全局作用域，若仍没有， 则报错；
+        作用域链：变量的查找机制，一直向上级作用域查找；
+
+        函数执行的过程：
+            先开辟一个私有作用域(栈内存)，形参赋值，然后变量提升，然后代码从上向下执行；
+            私有变量有 形参 和 在私有作用域中声明过的变量；其他的变量都是上级作用域的。
+            暂时性死区； 在let和const之前 不能使用 他们声明的任何变量
+
+        es6针对let和const声明的变量；多了一个块级作用域（{}）；理解成一个私有作用域即可
+
     */
-   var a = 12;// 全局变量
-   var f = function(){
-       var a = 100;
-   }
+    var a = 12; // 全局变量
+    var f = function () {
+        console.log(a) // undefined  存在变量提升的原因
+        var a = 100;
+        console.log(a) // 100  内部赋值为100
+    }
+    f()// 在代码执行之前，就有变量提升的这个阶段
+    console.log(a) // 12  全局的这个a和私有的a没有关系
+
+
+    // var b = 10;
+    var f2 = function(){
+        // console.log(b); 
+        b = 200;
+        console.log(b) 
+    }
+    f2(100);
+    console.log(b); 
+
+
+    var f3 = function(c){
+        // 
+        // let c = 100;
+    }
+
+    var d = 10;
+    var f4 = function(){
+        // console.log(d);
+        // 暂时性死区； 在let和const之前 不能使用 他们声明的任何变量
+        let d = 100;
+    }
+    f4();
+
+    if(1<2){
+        var e = 12;
+        let g = 13;
+    }
+    console.log(e)
+    console.log(g);
 </script>
