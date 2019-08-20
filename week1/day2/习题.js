@@ -85,29 +85,3 @@
     }
     fn2();
     console.log(str,num);
-//----------------------------------------------------
-    alert(a);
-    console.log("a" in window);
-    if(!("a" in window)){
-        var a = 10;
-    }
-    alert(a);
-
-    console.log(fn);
-    if(9==8){
-        function fn(){
-            alert(2);
-        }
-    }
-//    ---------------------------------
-    f = function(){return true};
-    g = function(){return false};
-    (function (){
-        console.log(g);
-        if(g()&&[]==![]){
-            f = function f(){return false};
-            function g(){return true};
-        }
-    })();
-    alert(f());
-    alert(g())
