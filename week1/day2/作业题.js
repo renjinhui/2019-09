@@ -20,13 +20,22 @@ var a;
 console.log(a);
 
 //3、
+// console.log(a)
+// console.log(b)
+// console.log(c)
+// console.log(d)
+var a = 10,b = 20;
+var c = d = 20; //  var c = 20;d = 20
 function test(){
     if("a" in window){
-        var a = 10;
+        var a = 1000;
+    }else{
+        var a = 100;
     }
     console.log(a);
 }
 test();
+console.log(a)
 
 //4、
 var a = 1;
@@ -108,8 +117,8 @@ g = function(){return false};
     console.log(g);
     if(g()&&[]==![]){
         f = function f(){return false};
-        function g(){return true};
     }
+    function g(){return true};
 })();
 alert(f());
 alert(g())

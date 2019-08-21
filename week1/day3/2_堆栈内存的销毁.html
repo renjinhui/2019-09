@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="log">登录</button>
+    <button id="reg">注册</button>
+</body>
+</html>
+<script>
+    /*  
+        堆内存的销毁  谷歌浏览器为例： 浏览器会定期的查看整个堆内存，会把没有被引用的堆内存
+            销毁掉（回收）
+
+        栈内存的销毁  
+            全局作用域对应的栈内存：关闭页面的时候才会被销毁掉；
+            私有作用的对应的栈内存：一般情况下，函数执行完成，对应的栈内存就会把销毁，
+                当返回值 是个引用数据类型时， 不会被销毁    
+        栈溢出  内存泄漏   栈内存被占满了；栈内存不够用了；
+        
+        
+        闭包：闭包是一个私有变量的保护机制； 面试时的闭包是指的一个不销毁的作用域；
+                闭包是个变量的保护机制，保护私有变量不受外界的污染；
+            使用闭包可以实现 代码的模块化；每个模块之间时相互的独立的；
+    */
+    var a = [1,2,3,4];
+    a = 2;
+
+    var b = [1,2];
+    var c = b;
+    b = 2;
+
+    function sum(a,b){
+        return a + b
+    }
+    function  f() {
+        console.log(666)
+    }
+    function fn() {
+        var a = 12;
+        var b = function(){console.log(111)}
+        return {
+            a:a,
+            b:b
+        }
+    }
+    var t = sum(1,2);
+    var res = f();
+    var res2 = fn();
+
+
+    // 假如一个页面有登录功能 和 注册功能；这两个让两个人去编写；
+</script>
+<script src="./js/login.js"></script>
+<script src="./js/reg.js"></script>
+<script>
+    var obj = loginM();
+    obj.init();
+</script>

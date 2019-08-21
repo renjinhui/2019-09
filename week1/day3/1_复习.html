@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*  
+        变量提升：
+            在代码执行之前，JS会把 代码中带有 var 和 function 关键字的 变量提前声明，
+                用var声明的 只声明 不定义；
+                function声明的  即声明又定义（在 {}块级作用域中 只声明不定义）
+                声明不定义 给的默认值 都是  undefined
+                提升 只提升  等号左边的
+        针对 let const  有一个暂时性死区： 在声明之前 不能调用； 
+        
+        栈内存 用来存储值类型的，还用来提供代码的运行环境
+        堆内存 用来存储引用数据类型；
+
+        作用域就是一个栈内存
+
+        JS中的作用域： 全局作用域  私有作用域   块状作用域
+        全局作用域  页面一打开就会形成全局作用域；window
+        私有作用域  函数一执行就会形成一个私有作用域；
+        块状作用域  在es6中 所有的{}，排除对象，都是块级作用域；
+
+        上级作用域，私有作用域的上一层作用域；
+        作用域链： 变量的查找机制，私有作用域中的某个变量不是私有变量，那么就需要去上级作用域查找
+                  上级作用域没有的话 就接着再向上级作用域查找，直到找到全局作用域为止；没有的就报错；
+                  
+        函数执行的过程：
+            先开辟一个私有作用域(栈内存)， 然后 形参赋值， 然后 变量提升  然后代码从上向下执行；          
+
+        
+    */
+
+    console.log(f)
+    for (var i = 0; i < 3; i++) {
+        function f() {
+
+        }
+    }
+    var f = function qqq(){
+        console.log(666)
+    }
+    qqq()
+</script>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id='btn'>按钮</button>
+</body>
+</html>
+<script>
+    var btn = document.querySelector('#btn');
+    // btn.onclick =function(){
+    //     console.log(this);// 当前操作的元素
+    // }
+    // btn.onclick = () => {
+    //     console.log(this) // 箭头函数的 this 被箭头函数当作变量去处理的
+    // }
+ 
+    /* 
+        普通函数的 this 指向规律：
+            1、事件绑定的函数中的this  是指向当前操作元素的；
+            2、自执行函数中的this是指向 window的
+            3、其他的函数执行中的this 看点；
+    */
+
+    /* var obj = {
+        fn:function(){
+            console.log(this);
+        },
+        a:12,
+        b:13
+    }
+    btn.onclick = (function(){
+        //赋予 onclick 的 该自执行函数的返回结果，也就是一个箭头函数
+        return ()=>{
+            console.log(this)
+            obj.fn();
+        }
+    })();
+
+    (function(a,b){
+        console.log(this)
+    })(2,3);
+
+    var f = obj.fn;
+    f(); // window
+    obj.fn(); // obj
+    var obj2 = {
+        q:f
+    };
+    obj2.q === obj.fn // f  obj.fn   obj2.q  三者是不是一个地址？？
+    obj2.q() // obj2 */
+
+
+
+    function fn(){
+        console.log(this);
+    }
+    var obj = {
+        a:fn,
+        b:12,
+        c:13
+    }
+    var ary = [4,5,fn];
+    var obj2 = {
+        q:12,
+        w:fn
+    }
+    // fn  obj.a   ary[2]   obj2.w  四者同一个地址
+    fn(); // window
+    obj.a(); // obj
+    ary[2](); // ary
+    obj2.w(); // obj2
+
+
+</script>
