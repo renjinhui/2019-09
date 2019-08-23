@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /*  
+
+        JS代码执行之前 先把代码中带var 和 带 function 的提前声明，var 只声明 不定义；
+            function 是声明+定义；若是在大括号中的function  是只声明不定义的；
+        
+        let  const  暂时性死区；也就是 在let之前绝对不能调用对应的变量；一调用就报错；
+
+        变量提升 之提升 等号左边的部分；
+
+
+        var 出来的变量会在window增加一个对应的属性；window是全局大对象；
+        let const  声明出来的变量，不会再window中增加对应的属性
+
+        栈内存： 存储值类型，提供代码的运行环境；
+        堆内存： 存储引用数据类型；
+
+        作用域：每个作用域 就是  JS中的一个栈内存；
+         全局作用域 页面一打开就会形成一个全局作用域，页面关闭时，全局作用域销毁；
+         私有作用域 在函数执行时会形成一个私有作用域，一般函数执行完成之后就会销毁，但若函数的返回值是个引用数据类型，作用域就不会被销毁掉
+         块状作用域 在es6之后，所有的{} 除了对象；都是一个块状作用域；只有let 和 const 能识别 块状作用域
+            全局变量 在全局声明的变量
+            私有变量 在私有作用域声明的变量，形参
+         函数执行： 先开辟一个私有作用域 ，形参赋值  变量提升  代码执行；  
+
+        上级作用域：一个私有作用域的上级作用域是看执行的那个函数是在那个作用域声明定义的；跟函数在哪里执行没有关系；
+
+
+    */
+    f();// 2
+    var f = ()=>{
+        console.log(1)
+    }
+    f();// 1
+    function f() {
+        console.log(2)
+    }
+    f();// 1
+
+    // if(1<2){
+    //     let aaa = 123;
+    // }
+    // console.log(aaa);
+    
+</script>

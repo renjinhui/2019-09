@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+        git svn  代码版本管理器
+        git 分布式的版本管理器    github  gitLab  码云（三个远程仓库）三者git的使用方式一样
+        svn 集中式的版本管理器
+
+        装上git之后，首先初始化用户名和邮箱
+        git config --global user.name  renjinhui
+        git config --global user.email  1227760869@qq.com
+
+        怎么把一个文件夹 初始化成 git 仓库？
+        git init    该命令执行完成之后  文件夹内会多一个 .git 的隐藏文件夹；
+        
+        git仓库的三个区  工作区  暂存区   历史区
+        git add .  把工作区的内容提交到 缓存区
+        git commit -m '备注'  把缓存区的内容提交到 历史区；
+
+        把历史区的内容提交到 远程仓库
+          先在远程新建一个仓库   获取新建远程仓库的地址
+        git  remote  add  origin   远程仓库地址  
+        git remote -v  用来查看当前仓库有哪些桥梁； 一个本地仓库可以链接多个远程仓库；
+
+        git push 把历史区代码传到远程仓库；第一次push时会提示失败； 
+                                        我们只需按照提示 git push --set-up...
+        
+        
+
+        第二种简单方式： 在远程新建仓库； 直接用 
+            git clone  远程仓库地址     这种方式建立本地库
+            优点在于不用初始化本地库  也不用搭建桥梁；
+
+        git status   查看当前仓库的状态
+        git pull     下拉远程代码
+
+        linux 
+         ls  查看目录
+         cd  切换目录
+         mkdir   创建文件夹
+         touch   创建文件
+         cat     查看文件
+         vi      修改文件
+         rm      删除文件
+         rmdir   删除文件夹   只能删除空文件夹
+
+         rm -rf  强制删除
+
+
+        函数的两种声明方式：
+            var f = function(){}
+            function f (){}
+            var f = ()=>{
+
+            } 
+            形参 实参  
+            形参默认值  es6之前 在函数体内写  形参 = 形参 || 默认值；
+                       es6的写法  在形参处书写  形参=默认值
+            剩余运算符 ...形参c； 把剩余的所有实参 都放到 c这个形参对应的数组中去；
+            arguments 实参集合
+            this 函数的执行主体，谁让这个函数执行的；
+            return 一个决定返回值  另一个是打断函数的执行；
+    */
+    var f = function (a=10, b=100,...c) {
+        // a = a || 10;
+        // b = b || 100;
+        console.log(c)
+        return a + b
+    }
+    f(1,2);
+    f(1);
+    f();
+
+    var f = (...ary)=>{
+        console.log(ary)
+    }
+    f(1,2,3,4);
+    f(1,2);
+</script>

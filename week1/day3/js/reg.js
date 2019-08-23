@@ -107,3 +107,24 @@ var fn = obj.fn;
 fn(10);
 obj.fn(20);
 console.log(num, obj.num);
+
+// 5
+var name = "zhufengpeixun.com";
+var person = {
+    name: "zhufeng",
+    pro: {
+        name: "peixun",
+        getName: function() {
+            return this.name;
+        },
+        getName2: function () {
+            return function () {
+                return this.name
+            }
+        }
+    }
+};
+console.log(person.pro.getName());
+var pepole = person.pro.getName;
+person.pro.getName2()();
+console.log(pepole());
