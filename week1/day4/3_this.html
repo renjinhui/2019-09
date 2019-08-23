@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+</body>
+</html>
+<script>
+    /*  
+        this 函数的执行主体
+        1、事件绑定中的this 都是  当前操作的元素；
+        2、自执行函数中的this 是  window；
+        3、一般函数执行时，内部this指向 看点，点前边是谁 this就是谁；其他的都是window
+    */
+    // 1
+    // btn.onclick = function(){
+    //     console.log(this)
+    // }
+    // btn.onclick = ()=>{
+    //     console.log(this)
+    // }
+    // var fn = () => {
+    //     console.log(this);
+    //     console.log(arguments);
+    // }
+    // fn();
+
+    // 2
+    (function(n){
+        console.log(n) // 100
+        console.log(this); // window
+    })(100);   
+
+
+    // 3
+    var ary = [
+        1,
+        2,
+        function(){console.log(this)},
+        ()=>{console.log(this)}
+    ];
+    let f = ary[2];
+    f();//window
+    ary[2](); //ary.2()  ary
+    ary[3](); //ary.3()  window 
+</script>

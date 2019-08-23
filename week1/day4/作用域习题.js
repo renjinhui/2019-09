@@ -1,28 +1,33 @@
 var a = {
-    x:1
+    x: 1
 };
 var b = a;
-a.c = a = {y:1};
-console.log(a);// {y:1}
+a.c = a = {
+    y: 1
+};
+console.log(a); // {y:1}
 //--------------------------
 
 
-console.log(a,b,c); //undefined *  3
-var a=10,b=20,c=30;
-function f(a){ // a  b 私有
-    console.log(a,b,c);// 10 undefined  30
-    var b = a = c = 100;// 把私有 a b 改成 100 ； 把上级的c改成100；
-    console.log(a,b,c) // 100 * 3
+console.log(a, b, c); //undefined *  3
+var a = 10,
+    b = 20,
+    c = 30;
+
+function f(a) { // a  b 私有
+    console.log(a, b, c); // 10 undefined  30
+    var b = a = c = 100; // 把私有 a b 改成 100 ； 把上级的c改成100；
+    console.log(a, b, c) // 100 * 3
 }
-f(10,20);
-console.log(a,b,c); // 10 20 100
+f(10, 20);
+console.log(a, b, c); // 10 20 100
 
 
 
 //----------------------------
 a(); // 1
 // c();
-var a = c = function() {
+var a = c = function () {
     console.log(2)
 };
 a(); //2
@@ -33,18 +38,20 @@ a(); //2
 
 //----------------------------
 console.log(a);
-var a=12;
-function fn(){
+var a = 12;
+
+function fn() {
     console.log(a);
-    a=13;
+    a = 13;
 }
 fn();
 
 //----------------
-var foo=1;
-function bar(){
-    if(!foo){
-        var foo=10;
+var foo = 1;
+
+function bar() {
+    if (!foo) {
+        var foo = 10;
     }
     console.log(foo);
 }
@@ -56,47 +63,52 @@ bar();
 function a() {
     console.log(1)
 };
+
 function c() {
     console.log(2)
 }
-(function(b) {
-    b();//4
-    c();//2
+(function (b) {
+    b(); //4
+    c(); //2
     var b = c = function a() {
         console.log(3)
     };
-    function b(){
+
+    function b() {
         console.log(4)
     }
-    b();// 3
+    b(); // 3
 })(a);
 c(); //3
 
 //----------------------------------------------------
 alert(a); //undefined
 console.log("a" in window); // true
-if(("a" in window)){
+if (("a" in window)) {
     var a = 10;
+
     function fn() {
         console.log(3)
     }
 }
 console.log(a); //10 
 console.log(fn()); // 3
-if(8==8){
-    function fn(){
+if (8 == 8) {
+    function fn() {
         console.log(2);
     }
 }
 console.log(fn()); //2
 
 //===============================
-var n=5;
-function a(n){// n 是私有的undefined
+var n = 5;
+
+function a(n) { // n 是私有的undefined
     n++;
-    n=10;// 11
+    n = 10; // 11
     b();
-    function b(){
+
+    function b() {
         n++;
         alert(n);
     };
@@ -105,20 +117,22 @@ a();
 alert(n);
 
 //
-var a=3;
-function c(a){
+var a = 3;
+
+function c(a) {
     alert(a);
 }
-(function(){
-    var a=4;
-    c(a);  //4
+(function () {
+    var a = 4;
+    c(a); //4
 })();
 
 
 //
 var n = 10;
+
 function fn() {
-    var n = 20;
+    var n = 20; //21  22 23
     function f() {
         n++;
         console.log(n)
@@ -133,9 +147,10 @@ console.log(n);
 
 //======================
 var i = 1;
+
 function fn(i) {
     return function (n) {
-        console.log(n+(++i))
+        console.log(n + (++i))
     }
 }
 var f = fn(2);
@@ -149,6 +164,7 @@ let i = 1;
 let fn = function (n) {
     i *= 2;
     return function (m) {
+        n++; // 自己练习
         i += n + m;
         console.log(i);
     }
@@ -160,3 +176,29 @@ f(4);
 f(5);
 
 
+
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 2000);
+}
+
+
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1);
+}
+// {
+//     let i = 0;
+//     setTimeout(() => console.log(i), 1);
+// }
+// {
+//     let i = 1;
+//     setTimeout(() => console.log(i), 1);
+// }
+// {
+//     let i = 2;
+//     setTimeout(() => console.log(i), 1);
+// }
+
+// if(1<2){
+//     let aaa = 123;
+// }
+// console.log(aaa)

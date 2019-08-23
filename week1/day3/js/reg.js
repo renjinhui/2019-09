@@ -91,6 +91,19 @@ var obj = {name:'珠峰',age:9};
     console.log(obj.age);
 })(obj);
 console.log(obj.name);
+
+
+const shape = {
+    radius: 10,
+    diameter:function diameter() {
+        return this.radius * 2;
+    },
+    perimeter: () => 2 * Math.PI * this.radius
+};
+// 箭头函数中的this 是上级作用域中的this
+shape.diameter();//20
+shape.perimeter();//NaN
+  
 //4
 var num = 1;
 var obj = {num:2};
@@ -126,5 +139,5 @@ var person = {
 };
 console.log(person.pro.getName());
 var pepole = person.pro.getName;
-person.pro.getName2()();
+console.log(person.pro.getName2()());
 console.log(pepole());
