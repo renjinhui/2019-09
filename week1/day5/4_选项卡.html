@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 400px;
+            margin: auto;
+        }
+        .tabBox{
+            width: 100%;
+            height: 50px;
+            display: flex;
+        }
+        .tab{
+            flex:1;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        .tab.current{
+            background: salmon;
+            color: #fff;
+        }
+        .body{
+            width: 400px;
+            height: 400px;
+            font-size: 50px;
+            text-align: center;
+            border: 1px dashed skyblue;
+            display: none;
+        }
+        .body.current{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="tabBox">
+            <li class="tab current">1</li>
+            <li class="tab">2</li>
+            <li class="tab">3</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+    </div>
+</body>
+</html>
+<script>
+    let tabs = document.getElementsByClassName('tab'),
+        bodys = document.getElementsByClassName('body');
+
+    function clearClass(){
+        // 清除 current类名
+        for(var i = 0; i < tabs.length; i++){
+            tabs[i].className = 'tab';
+            bodys[i].className = 'body';// 去掉了所有body元素的 current 类名；
+        }
+    }
+
+    for(let i = 0; i < tabs.length; i++){
+        tabs[i].onclick = function () {
+            // 点击tab  让当前元素有current类名  其他元素没有
+            // 先清除所有的current 类名 然后再点击的元素加上
+            clearClass();
+            this.className = 'tab current';
+
+            // 让body跟着改变；让对应索引的body添加current类名， 其他的移除即可
+            bodys[i].className = 'body current';
+        }
+    }   
+
+    /* for(var i = 0; i < tabs.length; i++){
+        (function (n) {
+            tabs[n].onclick = function () {
+                // 点击tab  让当前元素有current类名  其他元素没有
+                // 先清除所有的current 类名 然后再点击的元素加上
+                clearClass();
+                this.className = 'tab current';
+
+                // 让body跟着改变；让对应索引的body添加current类名， 其他的移除即可
+                bodys[n].className = 'body current';
+            }   
+        })(i)
+        
+    }     */
+
+    function fn(n){
+        return function () {
+            // 点击tab  让当前元素有current类名  其他元素没有
+            // 先清除所有的current 类名 然后再点击的元素加上
+            clearClass();
+            this.className = 'tab current';
+
+            // 让body跟着改变；让对应索引的body添加current类名， 其他的移除即可
+            bodys[n].className = 'body current';
+        }   
+    }
+    for(var i = 0; i < tabs.length; i++){
+        tabs[i].onclick = fn(i)
+    }    
+</script>
