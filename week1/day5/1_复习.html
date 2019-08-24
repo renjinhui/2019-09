@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">eee</button>
+    <button class="btn">1</button>
+    <button class="btn">2</button>
+    <button class="btn">3</button>
+    <button class="btn">4</button>
+    <button class="btn">5</button>
+</body>
+
+</html>
+<script>
+    /*  
+        1、变量提升
+            代码执行执行 先把 用var 和 function关键字声明的变量提前声明，带var 的只声明 不定义
+            带function 声明又定义，前提是不再 块级作用域内部；
+
+            暂时性死区
+                在 let const  声明的变量之上；不能使用对应的变量，一经使用就报错；
+
+        2、堆栈内存
+            栈内存 存储值类型，提供代码的运行环境；
+            堆内存 存储引用数据类型
+
+            对象的存储过程： 先开辟一个堆内存，把键值对，一对一对的存储进去，存储完成之后把地址赋给对应的变量;
+            函数的存储过程： 先开辟一个堆内存，把函数体当作字符串存储到该内存中，存储完成之后把地址给函数名；
+
+            作用域：都是栈内存，代码能起作用的区域
+                全局作用域 页面一打开就会形成一个全局作用域；window
+                私有作用域 函数执行形成的作用域；函数执行的过程：先开辟一个作用域，形参赋值，变量提升 代码执行
+                块状作用域 es6特有的，针对let 和 const 才能起到作用；对于 var  没有任何反应
+
+                全局变量  全局声明的变量 
+                私有变量  私有作用域声明的变量，对于函数来说还有形参
+
+            var  let  const 三者有什么区别？？
+                1、var 可以重复声明，let const 不能重复声明；let 是变量 ； const 是常量；
+                2、let const 没有变量提升，存在暂时性死区；
+                3、let const 能够识别块级作用域；
+            
+            垃圾回收，堆栈内存销毁，
+                堆内存的销毁：谷歌浏览器会定期的查看堆内存空间，把空间中没有被引用的堆内存回收；
+                栈内存的销毁：全局作用域销毁：只有当页面关闭的时候才会销毁
+                             私有作用域销毁： 只有当函数的返回值是一个引用数据类型的时候才不会被销毁；
+
+            闭包：一个不销毁的作用域，一、保护私有变量不受外界的污染；二、存储值
+            闭包有什么缺点？？
+                不销毁的作用域，用的多了会造成内存泄漏；
+    
+        3、this  函数的执行主体，谁让这个函数执行了；
+            1、事件绑定中的this 都是当前的操作元素
+            2、自执行函数中的this 是 window
+            3、一般函数执行都是看点的，点前边是谁 this就是谁；没点的都是window
+
+    */
+    //    var a = 10;
+    function f(a) {
+        console.log(a)
+        //    let a = 12;
+    }
+    var obj = {
+        a: 1,
+        b: (function (n) {
+            return n * 100
+        })(2),
+    }
+    console.log(obj)
+    console.log(obj)
+    console.log(obj)
+    console.log(obj)
+    console.log(obj)
+    console.log(obj)
+    console.log(obj)
+    console.log(obj)
+
+    var a = [];
+    //    var b = a;
+    a = 123;
+    var f = function () {
+        var a = 2;
+        var b = 13;
+        var f1 = function () {
+            console.log(a, b)
+        }
+        return {
+            f1
+        }
+    }
+    var obj123 = f();
+    obj123.f1();
+
+    var obj1 = (function(){
+        var a = 12;
+        var b = 13;
+        return function(){
+            console.log(a,b)
+        }
+    })()
+    obj1()
+
+    var oBtns = document.getElementsByClassName('btn');
+    for(var i = 0 ; i < oBtns.length; i++){
+        oBtns[i].onclick = function () {
+            console.log(this)
+        }
+    }
+</script>
+<script src="./reg.js"></script>
+<script src="./log.js"></script>
+<script>
+    logM.f();
+    regM.f();    
+</script>

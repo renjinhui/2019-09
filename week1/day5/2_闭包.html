@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    for (var i = 0; i < 4; i++) {
+        setTimeout(() => {
+            // console.log(i+1)
+        }, 1000 * (i + 1));
+    }
+    /* 
+        i = 0;
+        setTimeout(() => {
+            console.log(i+1)
+        }, 1000*1);
+    
+        i = 1;
+        setTimeout(() => {
+            console.log(i+1)
+        }, 1000*2);
+
+        i = 2;
+        setTimeout(() => {
+            console.log(i+1)
+        }, 1000*3);
+
+        i = 3;
+        setTimeout(() => {
+            console.log(i+1)
+        }, 1000*4);
+
+        i=4
+    
+    */
+
+    for (let j = 0; j < 4; j++) {
+        setTimeout(() => {
+            // console.log(j+1);
+        }, 1000 * (j + 1));
+    }
+    // console.log(j);
+    /* 
+        {
+            let j = 0;
+            setTimeout(() => {
+                console.log(j+1);
+            }, 1000*(0+1));
+        } ,
+        {
+            let j = 1;
+            setTimeout(() => {
+                console.log(j+1);
+            }, 1000*(1+1));
+        },
+        {
+            let j = 2;
+            setTimeout(() => {
+                console.log(j+1);
+            }, 1000*(2+1));
+        } ,
+        {
+            let j = 3;
+            setTimeout(() => {
+                console.log(j+1);
+            }, 1000*(3+1));
+        }    
+    
+    */
+
+    for (var k = 0; k < 4; k++) {
+        (function(n){
+            setTimeout(() => {
+                console.log(n)
+            }, 6000);
+        })(k)
+        // setTimeout(() => {
+        //     console.log(k + 1)
+        // }, 1000 * (k + 1));
+    }
+</script>
