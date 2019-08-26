@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /*  
+        变量提升  作用域  堆栈内存销毁  私有变量  作用域链    this
+        上级作用域：每一个函数执行都会形成一个私有作用域，那这个私有作用域的上级作用域，
+                    是看这个函数体是在那个作用域形成的，在那个作用域形成，上级作用域就是
+                    哪个！ 也就是说 上级作用域 跟函数在哪里执行没关系，之跟函数在哪里定义有关系
+
+        this:  箭头函数中的this 是指的上级作用域的this;     
+        
+        
+        闭包：
+            1、闭包是啥？ 本质就是一个变量的保护机制，但是我们平时说的闭包都是指的一个不销毁的作用域，用来保护私有变量和存储某些私有的值；
+            2、哪些地方用过闭包？自己开发某个模块或者自己封装一些工具库的时候 会选择使用闭包
+            3、闭包有哪些优缺点？优点就是保护变量  缺点就是作用域不销毁，占用栈内存；
+    */
+
+    /* 
+        es6: 
+            let  const
+            箭头函数  ()=>{}  (n,m)=>n+m   m=>m*100
+            ...  扩展运算符  剩余运算符  解构运算符
+            let [a,b,...c] = [1,2,3,4,5,6,7,8]; 数组的解构赋值，按照位置一一对应的；
+            块级作用域 {}
+            形参赋默认值；function f(a=12,b=13){}
+            var obj = {f};  ====> var obj = {f:f}
+    */
+   var  a = (n,m)=>{
+       return n + m;
+   }
+   var ary = [1,2,3];
+   Math.max(...ary)
+   var fn = function(...arr){
+       console.log(arr)
+   };
+//    fn(2,3,4,5,6)
+    fn(...ary);
+   
+    
+    var a = 123;
+    function f(){
+        console.log(a)
+        let a = 1;
+    }
+    f();
+    function fn(){
+        var a = 12;
+        var f = function(){
+            console.log(a)
+        }
+        return {
+            f// 属性名属性值相同的时候，可以简写成一个；
+        }
+    }
+    var  f2 = fn().f;
+    f2(); // 12
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 工厂模式
+    var person = function(name,age){
+        var obj = {
+            name:name,
+            age:age,
+            eat(){
+                console.log(`${this.name}吃饭`)
+            }
+        }
+        return obj
+    }
+
+    // 构造函数模式
+    var Person = function (name,age) {
+        this.name = name;
+        this.age = age;
+        this.eat = function () {
+            console.log(`${this.name}吃饭`)
+        }
+        // return 123 构造函数 若return的是一个值类型，则不影响new执行的结果
+        // return []   若返回的是一个引用数据类型，则会把默认return的this换掉
+    }
+    var per1 = person('李四',20);
+    var per1_1 = person('李四',20);
+    console.log(per1.eat === per1_1.eat);
+
+    var per2 = new Person('张三',22);
+    var per2_2 = new Person('张三',22);
+    // new 执行函数的时候，开辟作用域 形参赋值 变量提升；
+    //      然后把函数中的this 指向了一个新开辟的堆内存，
+    //      在这之后，再去操作this的时候，其实就是在造作这个堆内存
+    //      最后把 this 返出去；
+    console.log(per2.eat === per2_2.eat);
+
+    var per3 = Person();
+    console.log(per3)
+
+    // 工厂模式 和  构造函数模式的区别？
+    // 构造函数模式 不需要自己创造一个对象的；
+    // 构造函数模式 不需要自己主动return 内容；
+</script>

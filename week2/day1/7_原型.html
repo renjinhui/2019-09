@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    // 吃  喝   玩   都是属于所有人类的共用属性
+    // 把共用的属性 我们都放到原型上
+    Person.prototype.eat = function(){
+        console.log('吃')
+        this.drink();
+    }
+    Person.prototype.drink = function(){
+        console.log('喝')
+        this.play();
+    }
+    Person.prototype.play = function(){
+        console.log('玩')
+    }
+    var per1 = new Person('李四',20);
+    var per2 = new Person('张三',22);
+    per2.eat();
+    // eat执行的时候， 函数中的this是 per2;
+    // eat函数中的 this.drink()  其实就是   per2.drink()
+    // per2.drink()执行的时候， 函数中的this也i是 per2;
+    // drink函数中的 this.play()  其实就是   per2.play()
+
+    function mypush(ary,...res){
+        for(var i = 0; i < res.length; i++){
+            ary.push(res[i])
+        }
+    }
+    var ary = [1,2,3];
+    Array.prototype.mypush = function (...res) {
+        console.log(this)
+        // 怎么获取ary
+        for(var i = 0; i < res.length; i++){
+            this.push(res[i])
+        }
+    }
+    ary.mypush(4,5,6)
+    console.log(ary)
+</script>
