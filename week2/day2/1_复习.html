@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /*  
+        面向对象
+        类                实例
+        JS的常见内置类  Array  Object(基类) Function  String  Number RegExp Date ...
+        JS常见的设计模式：
+            单例模式  
+            高级单例模式 函数执行返回一个对象，可以有自己私有的内容
+            工厂模式  批量产生单例模式
+            构造函数模式  new执行函数的时候， 会在变量提升之后，多了一步 开辟对内存，把this指向该堆内存，代码执行完成之后，默认返回this;
+            原型模式  比构造函数模式多了一个  prototype
+
+    */
+    var per = {
+        name:123,
+        age:234,
+        eat(){},
+        play(){}
+    }
+    function factory(name,age){
+        var obj = {
+            name,
+            age,
+            eat(){},
+            play(){}
+        }
+        return obj
+    }
+    var per2 = factory('李四',29)
+    var per2 = factory('李四2',229)
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        // this.eat = function eat(){
+        //     console.log(`${this.name}吃饭`)
+        // }
+        this.play = function play(){
+            console.log(`${this.name}玩耍`)
+        }
+    }
+    Person.prototype.eat = function eat(){
+        console.log(`${this.name}吃饭`)
+    }
+    Person.prototype.play = function play(){
+        console.log(`${this.name}玩耍`)
+    }
+    var per3 = new Person('战打',22);
+    var per4 = new Person('飒飒',33);
+    console.log(per3,per4)
+    console.log(per3.eat === per4.eat)
+
+
+    /* 
+        类的原型其实就是一个堆内存(对象)
+        每一个函数 (类) 都有一个prototype的属性 指向自己的原型
+        每一个对象(实例)都有一个__proto__的属性 指向所属类的原型
+        每一个原型 都有一个 constructor属性，指向其构造函数本身
+
+        原型链：
+            原型链就是对象中的属性的查找机制，先在自己身上查找，没有的话 就通过 __proto__ 去所属类的原型上接着查找
+                原型上没有的话，就再通过 __proto__ 向上级原型查找，一直找到 基类的原型，有的话就返
+                回对应的值，没有就是undefined
+    */
+</script>
