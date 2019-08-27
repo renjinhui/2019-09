@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #tab_box,#tab_box2,#tab_box3,#tab_box4,#tab_box5 {
+            width: 400px;
+            border: 1px dashed darkcyan;
+            margin: auto
+        }
+
+        ul {
+            display: flex;
+        }
+
+        .tab {
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+            border: 1px dashed darksalmon;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tab.current {
+            background: darkorange;
+            color: #fff;
+        }
+
+        .body {
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            font-size: 40px;
+            display: none
+        }
+
+        .body.current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab_box">
+        <ul>
+            <li class='tab current'>1</li>
+            <li class='tab'>2</li>
+            <li class='tab'>3</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+    </div>
+    <div id="tab_box2">
+        <ul>
+            <li class='tab current'>1</li>
+            <li class='tab'>2</li>
+            <li class='tab'>3</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+    </div>
+    <div id="tab_box3">
+        <ul>
+            <li class='tab current'>1</li>
+            <li class='tab'>2</li>
+            <li class='tab'>3</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+    </div>
+    <div id="tab_box4">
+        <ul>
+            <li class='tab current'>1</li>
+            <li class='tab'>2</li>
+            <li class='tab'>3</li>
+            <li class='tab'>4</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+        <div class="body">4</div>
+    </div>
+</body>
+
+</html>
+<script>
+    function Tab2(id) {
+        var box = document.querySelector(id),
+            tabs = box.getElementsByClassName('tab'), // 获取tab
+            bodys = box.getElementsByClassName('body'); // 获取 body
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].onclick = function () {
+                // 给每一个tab绑定点击事件
+                for (let j = 0; j < tabs.length; j++) {
+                    tabs[j].className = 'tab';
+                    bodys[j].className = 'body';
+                }
+                this.className = 'tab current'; // 让对应的tab显示对应的样式
+                bodys[i].className = 'body current'; // 让对应的body显示对应的样式
+            }
+        }
+    }
+
+    function Tab(id) {
+        this.box = document.querySelector(id);
+        this.tabs = this.box.getElementsByClassName('tab');
+        this.bodys = this.box.getElementsByClassName('body');
+        // 元素的获取 每个实例跟每个实例之间可能不一样，但是
+        // 每个选项卡都需要 循环绑定  和 清除类名
+        this.mapBind();
+    }
+    Tab.prototype.mapBind = function () {
+        // this.tabs
+        for (let i = 0; i < this.tabs.length; i++) {
+            this.tabs[i].onclick = () => {
+                // 为什么使用箭头函数？？？
+                // 因为普通函数 中的this是当前操作的元素，不是我们当前产生的实例
+                // 所以 我们用箭头函数， 箭头函数中的this 是指向上级作用域的this
+                // 也就是我们当前操作的实例；
+                this.clearClass();
+                this.tabs[i].className = 'tab current';
+                this.bodys[i].className = 'body current';
+            }
+        }
+    }
+    Tab.prototype.clearClass = function () {
+        // 清除谁的类名？？
+        // 清除 tabs 和 bodys 上的 current类名
+        // this.tabs, this.bodys
+        [...this.tabs].forEach((v, i) => {
+            v.className = 'tab';
+            this.bodys[i].className = 'body';
+        })
+        // for(var i = 0; i < this.tabs.length; i++){
+        //     this.tabs[i].className = 'tab';
+        //     this.bodys[i].className = 'body';
+        // }
+    }
+</script>
+<script>
+    new Tab('#tab_box')
+    new Tab('#tab_box2')
+    new Tab('#tab_box3')
+    new Tab('#tab_box4')
+</script>
