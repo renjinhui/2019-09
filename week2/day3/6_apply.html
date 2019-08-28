@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // apply的目的跟call 一样； 但是却别在于第二个参数;第二个参数是一个数组或者类数组
+    // 虽然第二个参数是一个集合，但是 函数执行时，参数还是被散乱的传过去的；不是一个集合整个传的
+    var obj = {
+        q:123,w:234
+    }
+    var f = function(a,b,c,d){
+        console.log(this);
+        console.log(a,b,c,d)
+    }
+    f.call(obj,1,2,3,4);
+    f.apply(obj,[1,2,3,4]);
+
+    Math.max(2,3,1,5,2,5,2,3,3,5)//
+    var ary = [2,3,1,5,2,5,2,3,3,5];
+    Math.max(...ary);
+    Math.max.apply(Math,ary);
+</script>

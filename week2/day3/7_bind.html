@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // bind 的用法跟 call 一模一样；只是不让函数立即执行 而是返回了一个新函数
+    // 新函数执行的时候this 指向换掉了;新函数执行传递的参数会补在通过 bind绑定的参数后边
+    // 我们可以把 bind绑定的参数理解成新函数的默认参数；
+
+    var obj = {a:123};
+    var f = function (a,b,c) {
+        console.log(this);
+        console.log(a,b,c);
+    }
+    var fn = f.bind(obj,6,5,6);
+    console.log(fn);
+
+    var f2 = (a)=>{
+        console.log(this);
+        return a;
+    }
+    f2();// window
+    f2.call(obj);// window
+
+    // bind 返回值是个新函数； 新函数执行的时候让老函数执行了，
+    // 并且把老函数中的this指向改变了
+    // Function.prototype.myBind = function (context,...arg) {
+    //     // this 是 f2;
+    //     var _this = this;// _this 这个变量存储的就是 f2函数
+    //     return function () {
+    //         // console.log(_this)
+    //         // _this()
+    //         // _this.call(context,...arg)
+    //         _this.apply(context,arg)
+    //     }
+    // }
+    Function.prototype.myBind = function (context,...arg) {
+        return (...ary)=>{
+            this.call(context,...arg,...ary)
+        }
+    }
+    var fn2 = f.myBind(obj,1,2,3,4);// window
+    // fn2 执行的时候 f2执行，并且 f2 中的  this  改成了  obj
+    fn2()
+
+
+    var fun = function () {
+        console.log(arguments);
+        console.log(this)
+    }
+    var fun2 = fun.myBind(obj,666,777);
+    fun2(333,555)
+
+    // Array.prototype.slice.call(arguments, 1) ====> arguments.slice(1);
+
+</script>
