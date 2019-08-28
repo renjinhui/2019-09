@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*  
+        函数的三种角色:
+            1、普通函数
+                形参 实参 this return  arguments 作用域
+            2、构造函数
+                原型  prototype 
+                原型链  __proto__
+                私有属性 共有属性  hasOwnProperty  
+                in   instanceof 
+                new 执行 注意其中的this
+                类 实例
+            3、作为普通对象    
+    */
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        var fn = function () {
+            console.log(name, age)
+        }
+        return 123;
+    }
+    var a = Person('aaa', 123); // this 是 window
+    var per = new Person('李四', 22) // this 是 内部新开辟的堆内存(实例)
+    Person.qqq = 123; // 把Person当作了普通对象
+
+
+    function Foo() {
+        getName = function () {
+            console.log(1);
+        };
+        return this;
+    }
+    Foo.getName = function () {
+        console.log(2);
+    };
+    Foo.prototype.getName = function () {
+        console.log(3);
+    };
+    var getName = function () {
+        console.log(4);
+    };
+
+    function getName() {
+        console.log(5);
+    }
+    Foo.getName();
+    getName();
+    Foo().getName();
+    getName();
+    new Foo.getName();
+    new Foo().getName();
+    new new Foo().getName();
+</script>

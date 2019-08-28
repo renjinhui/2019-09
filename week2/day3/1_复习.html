@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*  
+         类       实例            原型对象
+        人类      特朗普           共用属性
+
+        JS天生自带的类： Function  Array  Object(基类)  String ....
+        自定义类   function Tab(){}
+
+        自带类的 原型上的属性可以修改 但是 原型不能被覆盖；
+
+        prototype  __proto__   constructor  
+
+        // 原型 就是一个堆内存(对象)
+        每一个函数(类)) 都天生自带一个 prototype 的属性，指向自己的原型
+        每一个对象(实例) 都天生自带一个 __proto__ 的属性，指向所属类的原型
+        每一个默认的原型上都有一个 constructor属性， 指向 构造函数本身；
+
+        原型链： 属性的查找机制，先在自己身上查找，没有的就通过 __proto__接着向上级原型
+                查找，在没有接着 通过__proto__ 向上级原型查找，直到找到 基类的原型，
+                再没有的话，拿到的就是undefined
+        
+                
+        // 查看一个属性是否是私有的； per1.hasOwnProperty('eat')
+        // 封装一个判断共有属性的方法，这个方法需要放在基类的原型上，需要注意首先是他的属性，然后还不能是私有属性 
+        // 再原型上封装的方法， 里边的this 需要保证是 该类的实例    
+        
+        // 'eat' in  per1   per1这个对象能否调用到 eat 属性
+    */
+    Object.prototype.eat = function () {
+        // this
+    }
+    var a = [];
+    console.log(a.eat)
+    console.log('eat' in a)
+
+    Number.prototype.plus = function (a) {
+        return this + a
+    }
+    Number.prototype.minus = function (a) {
+        return this - a;
+    }
+
+    var n = 20;
+    var m = n.plus(10).minus(5);
+    console.log(m); //20+10-5
+
+    var ary = [];
+    console.log(ary instanceof Number)
+
+
+
+
+    // 练习
+    function C1(name) {
+        if (name) {
+            this.name = name;
+        }
+    }
+
+    function C2(name) {
+        this.name = name;
+    }
+
+    function C3(name) {
+        this.name = name || 'join';
+    }
+    C1.prototype.name = 'Tom';
+    C2.prototype.name = 'Tom';
+    C3.prototype.name = 'Tom';
+    alert((new C1().name) + (new C2().name) + (new C3().name));
+
+
+
+    function Fn(num) {
+        this.x = this.y = num;
+    }
+    Fn.prototype = {
+        x: 20,
+        sum: function () {
+            console.log(this.x + this.y);
+        }
+    };
+    let f = new Fn(10);// f = {x:10,y:10}
+    console.log(f.sum === Fn.prototype.sum);
+    f.sum();// sum中的 this就是f  f.x+f.y   20
+    Fn.prototype.sum();// this 就是 Fn.prototype   Fn.prototype.x + Fn.prototype.y  NaN
+    console.log(f.constructor);//Object 
+</script>

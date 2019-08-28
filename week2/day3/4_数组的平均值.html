@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 求一组数字的平均值；去除最大值和最小值；
+    /* var average = function(...ary){
+        // 剩余运算符
+        ary.sort((a,b)=>a-b);
+        ary.shift();
+        ary.pop();
+        var res = eval(ary.join('+'))/ary.length;
+        return res
+    }
+    var average = function(){
+        // 扩展运算符
+        var ary = [...arguments];
+        ary.sort((a,b)=>a-b);
+        ary.shift();
+        ary.pop();
+        var res = eval(ary.join('+'))/ary.length;
+        return res
+    } */
+    var average = function(){
+        // 扩展运算符
+        arguments.__proto__ = Array.prototype;// 修改原型指向
+        arguments.sort((a,b)=>a-b);
+        arguments.shift();
+        arguments.pop();
+        var res = eval(arguments.join('+'))/arguments.length;
+        return res
+    }
+    console.log(average(7,2,3,5,8,3,2,4,6,6))
+
+
+    /* var ary = [7,2,3,5,8,3,2,4,6,6];
+    ary.sort((a,b)=>a-b);
+    ary.shift();
+    ary.pop();
+    var res = eval(ary.join('+'))/ary.length;
+    console.log(res) */
+</script>

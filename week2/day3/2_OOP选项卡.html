@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+    
+            #tab_box,#tab_box2,#tab_box3,#tab_box4,#tab_box5 {
+                width: 400px;
+                border: 1px dashed darkcyan;
+                margin: auto
+            }
+    
+            ul {
+                display: flex;
+            }
+    
+            .tab {
+                flex: 1;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                font-size: 20px;
+                border: 1px dashed darksalmon;
+                cursor: pointer;
+                user-select: none;
+            }
+    
+            .tab.current {
+                background: darkorange;
+                color: #fff;
+            }
+    
+            .body {
+                width: 100%;
+                height: 300px;
+                line-height: 300px;
+                text-align: center;
+                font-size: 40px;
+                display: none
+            }
+    
+            .body.current {
+                display: block;
+            }
+        </style>
+</head>
+<body>
+    <div id="tab_box">
+        <ul>
+            <li class='tab current'>1</li>
+            <li class='tab'>2</li>
+            <li class='tab'>3</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+    </div>
+</body>
+</html>
+<script>
+    /* 
+        // 获取对应元素
+        // 循环绑定
+        // 清除类名 
+    */
+    function Tab(id) {
+        this.box = document.querySelector(id);
+        // 获取需要点击的元素
+        this.tabs = this.box.getElementsByClassName('tab');
+        // 获取对应的身体
+        this.bodys = this.box.getElementsByClassName('body');
+
+        this.mapBind();
+    }
+    Tab.prototype.mapBind = function () {
+        // 循环 this.tabs ;给每一个tab绑定点击事件
+
+        var _this = this; // 用一个变量去存储当前实例的地址；
+        // var that = this;
+        for(let i = 0; i < this.tabs.length; i++){
+            this.tabs[i].onclick = function () {
+                // 写成普通函数时，里边的this 是当前操作的元素
+                _this.clearClass();
+                _this.tabs[i].className = 'tab current';
+                _this.bodys[i].className = 'body current';
+            }
+        }
+    }
+    Tab.prototype.clearClass = function () {
+        // 清除current类名，使用forEach必须得是数组才行
+        [...this.tabs].forEach((v,i)=>{
+            v.className = 'tab';
+            this.bodys[i].className = 'body'
+        })
+    }
+
+    var tab = new Tab('#tab_box');
+    // tab.mapBind();
+</script>
