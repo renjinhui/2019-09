@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 批量生产单例模式
+    var per1 = {
+        name:123,
+        age:345,
+        eat(){},
+        play(){}
+    }
+    // 工厂模式 就是一个函数
+    function person(name,age){
+        return{
+            name,
+            age,
+            eat(){},
+            play(){}
+        }
+    }
+    var per3 = person('李四',11)
+    var per4 = person('李四2',113)
+    var per5 = person('李四3',114)
+    var per6 = person('李四4',112)
+</script>

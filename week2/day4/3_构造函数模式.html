@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function person(name,age){
+        return{
+            name,
+            age,
+            eat(){},
+            play(){}
+        }
+    }
+    var per3 = person('李四',11);
+
+
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+        this.eat = function(){}
+        this.play = function () {}
+    }
+    var  per4 = new Person('张三',22);// per4 就是 Person类的 一个实例；
+    console.log(per4)
+
+    // 普通函数执行的过程
+    //  先开辟一个作用域  形参赋值  变量提升  代码执行 return啥，函数执行结果就是啥
+
+    // new 执行的过程
+    // 先开辟一个作用域  形参赋值 变量提升 开一个堆内存，然后吧函数中的this指向该堆内存  代码执行  默认返回this
+</script>

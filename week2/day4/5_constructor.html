@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.say = function () {
+        console.log(`${this.name}说话`)
+    }
+    var per1 = new Person('李四',22);
+
+    Person.prototype = {
+        // 原型重构
+        constructor:Person,
+        say(){
+            console.log(`${this.name}聊天`)
+        }
+    }
+    var per2 = new Person('张三',20);
+    per1.say(); // 说话
+    per2.say(); // 聊天
+    console.log(per1.constructor) // Person
+    console.log(per2.constructor) // Object
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        面向对象  JS c++ java
+        面向过程   c
+            类                     实例
+        单例模式    
+        以把你会使用单例封装一些  工具库
+    */
+    var per = {
+        name:'小明',
+        age:10,
+        sex:1
+    }
+
+    // 高级单例模式
+    function person(){
+        var name = '小红',
+        var age = 12;
+        var sex = 1;
+        var fn = function () {
+            console.log(name)
+        }
+        return{
+            name:name,
+            age:age,
+            sex,fn
+        }
+    }
+    var per2 = person();
+    per2.name = '666';//只是改了per2这个对象的 name 的属性值；内部的name变量是不会被修改的
+    console.log(per2.name); // 666
+    per2.fn();
+
+    //高级单例模式 可以应用到 模块化开发
+</script>
