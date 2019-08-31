@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 继承 就是 子类 继承 父类上的属性
+    function Fn(){}
+    Fn.prototype = new Array();// Fn类 继承了  Array 的  共用方法
+    var f = new Fn();
+    console.log(f.pop);
+
+    // call继承
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.eat = function(){}
+
+    function Child(name,age,toy) {
+        Person.call(this,name,age);//让Person函数执行，并且把Person执行时中的this改成了
+        //                         当前Child的this;那么 Person中的this.name this.age
+        //                         就变成了 Child中的this.name 和this.age了；
+        // this.name = name;
+        // this.age = age;
+        this.toy = toy;
+    }
+    // Child.prototype = Person.prototype; // 小孩类的原型直接改成了 人类的原型；这样，人类的共有属性 小孩类就也有了；
+    // Child.prototype = new Person();//孩类的原型直接改成了 人类的一个实例
+    Child.prototype = Object.create(Person.prototype);
+    //Object.create(Person.prototype); 返回值是一个空对象，但是这个空对象的__proto__时指向 Person的原型的
+    Child.prototype.sleep = function(){};
+    var xm = new Child('小明',20,'挖掘机');
+    console.log(xm);
+    // 寄生组合式 继承
+
+
+
+
+    class Parent{
+        constructor(name){
+            this.name = name
+        }
+        eat(){}
+        play(){}
+        static getName(){}
+    }
+    class Children extends Parent{
+        constructor(toy){
+            // class 继承的时候， 写了contructor就必须写 super
+            super();// 这个super就是 Parent 的 constructor；相当于我们的call继承
+            this.toy = toy
+        }
+        study(){}
+    }
+    // class继承可以把私有的 共有  静态  属性 全都继承过来；
+    var c1 = new Children('挖掘机');
+    console.log(c1)
+
+
+</script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="box">
+        <li>姓名是: <span>小明</span> 年龄是 <span>20</span></li>
+        <li>姓名是: <span>小明</span> 年龄是 <span>20</span></li>
+        <li>姓名是: <span>小明</span> 年龄是 <span>20</span></li>
+    </ul>
+</body>
+</html>
+<script>
+    let box = document.querySelector('.box');
+    let ary = [
+        {name:'小明',age:10},
+        {name:'小明2',age:20},
+        {name:'小明3',age:30},
+        {name:'小明4',age:40}
+    ];
+    let [a,,,,b] = [1,2,3,4,5];// 数组的解构赋值 是按照位置决定的
+    let {x,y,z} = {x:12,a:123,v:345,y:666};// x=12,y=666,z=undefined;对象的解构是按照属性名对应的
+
+    function renderHtml(ary) {
+        // 该函数是把后台给的数据渲染到页面上；
+        var str = '';
+        ary.forEach((item)=>{
+            let {name,age} = item;// 对象的解构赋值
+            str += `<li>姓名是: <span>${name}</span> 年龄是 <span>${age}</span></li>`
+        })
+        box.innerHTML = str;
+    }
+    var oLis = document.getElementsByTagName('li');
+    var oLis2 = document.querySelectorAll('li');
+    console.log(oLis,oLis2);
+    renderHtml(ary);
+    console.log(oLis,oLis2);// oLis 自动更新了； oLis2没有发生任何改变
+
+    // oLis是更新之后的集合
+    let arr = [...oLis];
+    arr.sort((a,b)=>{
+        let aName = a.getElementsByTagName('span')[0].innerHTML;
+        let bName = b.getElementsByTagName('span')[0].innerHTML;
+        return bName.localeCompare(aName)
+    })
+    console.log(arr);// 按照姓名排好序的 数组
+    arr.forEach(item=>{ 
+        box.appendChild(item);// 因为这些元素都是在页面上已经存在的；所以append只会改变位置 不会新增；
+    })
+
+    // DOM的回流和重绘
+    // 只要改动DOM结果 或者 元素的位置； 都会引发DOM回流； 回流：浏览器要重新渲染一边结构
+    // 重绘，只是让页面重新渲染一下css样式；比如 改变字体颜色，改变背景图等等
+</script>

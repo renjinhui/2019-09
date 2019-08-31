@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*  
+        第一条： 箭头函数中的this 始终是上级作用域中的this；任何对于this的修改都不作用
+        第二条： 通过 call apply bind 修改过的this 不会再出现任何修改
+        其他的：
+            事件绑定的this 是当前操作的元素
+            自执行函数中的this 是window
+            定时器中的this 是 window
+            其他的看点，函数执行点前边是谁 this  就是谁；没有的就是window
+    */
+    function f() {
+        console.log(this)
+    }
+    var f2 = f.bind(Array)
+    //    f2()
+    f2.call(Object);
+</script>

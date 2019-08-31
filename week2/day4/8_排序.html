@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id='nameBtn'>姓名排序</button>
+    <button id='ageBtn'>年龄排序</button>
+    <ul id='box'>
+        <li>姓名是：小红；年龄是 <span class="age">10</span></li>
+    </ul>
+</body>
+</html>
+<script>
+    let ary = [{
+            name: "小明",
+            age: 10
+        },
+        {
+            name: "小李",
+            age: 100
+        },
+        {
+            name: "小红",
+            age: 102
+        },
+        {
+            name: "小黄",
+            age: 18
+        }
+    ]
+    let box = document.querySelector('#box');
+    let nameBtn = document.querySelector('#nameBtn');
+    let ageBtn = document.querySelector('#ageBtn');
+    
+
+    function renderHtml(){
+        let str = '';
+        ary.forEach((item,index)=>{
+            str += `<li>姓名是：${item.name}；年龄是<span class="age"> ${item.age}</span></li>`
+        })
+        box.innerHTML = str;
+    }
+    renderHtml();
+    
+    let oLis = document.getElementsByTagName('li');
+    let temp = oLis[0];
+    // temp 是页面上已经存在的节点； 再去使用appendChild时，页面不会新增一个节点
+    // 只会是改变一下原有节点的位置；
+    // box.appendChild(temp);
+    
+    // 把oLis转成数组，然后把数组中的项 按照 年龄进行排序；
+    // 然后把 排好序的数组中的每一项 再append到 box中
+
+    let flag = 1;
+    ageBtn.onclick = function () {
+        flag*=-1;
+        let ary2 = [...oLis];
+        ary2.sort((a,b)=>{
+            // a， b  就是 对应 li标签
+            // 我们要用li内部的 span标签的 innerHTML 进行排序
+            var age1 = a.getElementsByClassName('age')[0].innerHTML;
+            var age2 = b.getElementsByClassName('age')[0].innerHTML;
+            return (age1 - age2)*flag
+        })
+        console.log(ary2);
+        ary2.forEach((item)=>{
+            box.appendChild(item)
+        })
+    }
+    
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // typeof  Object.prototaltype.toString.call()  constructor  instanceof
+    var ary = [];
+
+    // instanceof 就是查看 ary 在不在对应的原型链上；
+    // ary 链到 基类的原型 ； 看 Array 在不在这条链上
+    ary instanceof  Array// true  
+    ary instanceof  Number // false
+    // 任何引用数据类型  instanceof  Object 都是true
+
+    // 值类型 instanceof  xxxx 都是false
+
+
+    // 查看是都是私有属性
+    // hasOwnProperty
+    var ary = [];
+    ary.qqq = 123;
+    ary.hasOwnProperty('qqq');
+
+    // 查看是都是某个对象的属性  对象.属性
+    // in 
+    var ary = [];
+    'push' in ary // true
+    'hasOwnProperty' in ary // true
+
+    // 判断是否是共有方法？？  一 首先需要是他的属性（in）   二 不能私有属性(hasOwnProperty)
+    Object.prototype.hasPubProperty = function (key) {
+        // 怎么拿到 'push'  ary??
+        // key ===> 'push'
+        // this ===> ary
+        if((key in this) && !this.hasOwnProperty(key)){
+            return true
+        }
+        return false
+    }
+    ary.hasPubProperty('push');//true
+
+    //判断数据类型方法
+    Object.prototype.myType = function(){
+        // this 是  ary
+        var str = Object.prototype.toString.call(this);// '[object Array]'
+        var str2 = str.slice(8,str.length-1);
+        var str3 = str2.toLowerCase();
+        return str3;
+    }
+    ary.myType(); // 'array'
+    ''.myType();// 'string'
+
+    //
+    // plus  minus
+    Number.prototype.plus = function (n) {
+        return this + n;
+    }
+    Number.prototype.minus = function (n) {
+        return this - n;
+    }
+    var a= 10;
+    a.plus(1).minus(2).plus(20)// 10 + 1 - 2 + 20
+    // 为什么可以使用链式调用？？
+    // 原因是 前边函数执行的返回结果 可以 调用到后边的函数
+
+    var ary = [];
+    var n = ary.concat(1,2,3).push(4).plus(10);
+    var str = ary.concat(6,6,6).join('+').split('+').push(6).toFixed(2);
+    console.log(n,str)
+</script>
