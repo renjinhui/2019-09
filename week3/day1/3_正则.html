@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var str = '2019-09-02';
+    str.replace(/-/g,'/');
+
+    //正则在JS中 是一种专门用来处理字符串的 类；可以理解成字符串的规则；正则只能用来处理字符串
+    // 编写正则 有两种方式：
+    var reg = /zf/;// 字面量的编写方式
+    var reg2 = new RegExp('zf');// 构造函数的编写方式,一般涉及到变量的时候会经常使用
+    console.log(reg===reg2)// false 正则是引用数据类型
+
+    var a = 'hello';
+    var reg3 = /a/;
+    var reg4 = new RegExp(a);
+    console.log(reg3,reg4);
+
+    // 正则处理字符串：匹配(字符串满不满足正则的条件)test   捕获(把满组正则条件的字符获取到)exec
+    // 正则的组成部分  元字符  修饰符
+      // 元字符(两条斜杠中间的字符) 可以分为： 有特殊含义的元字符  普通元字符  量词元字符
+      // 有特殊含义的元字符
+      /*  
+            \   ：转义字符， 把有特殊含义的字符 转成字符本身
+            \d  ：代表了0-9之间的数字
+            \D  ：代表对于的 \d 的取非；除了 0-9之外的任何字符
+            \w  ：代表了数字 字符 下划线
+            \W  ：代表对于 \w 的 取非；除了数字 字母 下划线 之外的任何字符
+            ^   ：代表以什么开头
+            $   ：代表以什么结尾
+            .   ：除了换行之外的所有字符
+            \n  ：代表换行
+            [ab] ：a或b
+            [^ab] ：代表除了 a b 之外的字符
+            [a-z] ：代表a到z之间的所有字符
+            [^a-z] ：除了小写字母之后的字符
+            a|b : a或b
+            ()      :  分组的意思，可以提升运算优先级
+            (?:)    :  只匹配 不捕获 
+            (?=)    ：正向肯定预查
+            (?!)    ：正向否定预查
+      */
+</script>
+<script src="./js/3.js"></script>
