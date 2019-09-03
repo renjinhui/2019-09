@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="./js/3.js"></script>
+<script>
+    var str = 'https://www.baidu.com/s?wd=%E6%9C%B1%E4%B8%80%E9%BE%99&rsv_spt=1&rsv_iqid=0xb8575bcf000a0ccd&issp=1&f=3&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=ts_0&rsv_sug3=4&rsv_sug1=3&rsv_sug7=101&rsv_sug2=0&prefixsug=zhu&rsp=0&inputT=1640&rsv_sug4=2077';
+    var reg = /([^?=&]+)=([^?=&]+)/g;
+    var ary = reg.execAll(str);
+    console.log(ary)
+    var obj = {};
+    ary.forEach(item=>{
+        // 循环（迭代）这个数组  把数组中的每一项的 第二项当作属性名 第三项当作属性值
+        obj[item[1]] = item[2]
+    })
+    console.log(obj);
+</script>

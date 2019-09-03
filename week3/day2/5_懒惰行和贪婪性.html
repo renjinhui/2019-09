@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 懒惰性   找到一次符合规则的字符串之后 就不再向后捕获了
+    //  怎么解决懒惰行 ？？   修饰符g
+    var reg = /\d+/
+    console.log(reg.exec('珠峰2019哈哈2020'));
+
+    // 贪婪性   一次把所有符合条件的都拿到
+    // 怎么解决贪婪性 ？？  对应元字符的末尾加一个?
+    var reg2 = /\d+?/
+    console.log(reg2.exec('珠峰2019哈哈2020'))
+
+    // 懒惰性就是只获取一次，贪婪性就是 一次尽量多的获取；
+</script>

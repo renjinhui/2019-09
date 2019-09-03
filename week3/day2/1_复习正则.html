@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 正则是专门用来处理字符串的 一种规则；
+    // JS中的正则是一个类  RegExp   他的实例都是引用数据类
+    // 编写正则有两种： 字面量   构造函数
+    var reg = /\d/;// 字面量
+    var reg2 = new RegExp('\\d');// 第一个斜杠是把第二个斜杠转译成了 没有任何含义的斜杠本身
+    console.log(reg,reg2)
+
+    // var reg = /a/
+    // var reg2 = new RegExp('a');
+
+    // 正则的用法： 匹配 test ;  捕获 exec
+
+    //正则的组成部分   元字符   修饰符
+    // 元字符 ： 特殊元字符   量词元字符   普通元字符
+    /* 
+        \       代表转义
+        .       代表除了换行之外的所有字符
+        \d      代表0-9之间的数字
+        \w      代表数字 字母  下划线
+        ^       代表以什么开头
+        $       代表以什么结尾
+        [ab]    代表a或b
+        [a-z]   代表a到z 也就是小写字母
+        [^ab]   代表除了a和b
+        [^a-z]  代表除了小写字母
+        a|b     代表a或b
+        ()      代表分组，捕获时常用，在匹配是可以提升优先级
+        (?:)    只匹配 不捕获
+        (?=)    只匹配 不捕获  正向预查
+        (?!)    只匹配 不捕获  负向预查
+    */
+
+    // 量词元字符  使用在对应的元字符的后边
+    /*  
+        ?       代表对应的字符出现0或1次
+        *       代表对应的字符出现0或多次
+        +       代表对应的字符出现1或多次
+        {n}     代表对应的字符出现n次
+        {n,m}   代表对应的字符出现n到m次
+        {n,}    代表对应的字符至少出现n次
+    */
+
+    // 修饰符  用在两个斜杠的后边
+    // i m g
+    // i     忽略大小写     /a/i     /a/img  
+    // m     多行匹配       /a/m
+    // g     全局匹配       /-/g
+    // 使用 new 创建修饰符的时候 函数的第一个参数是对应的是 元字符 ； 第二个参数是 修饰符
+</script>
+<script src="./js/1.js"></script>

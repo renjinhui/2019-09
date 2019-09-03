@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="手机号" id='inp'>
+    <input type="password" placeholder="密码" id='psw'>
+    <button id='btn'>提交</button>
+</body>
+</html>
+<script>
+    let inp = document.querySelector('#inp'),
+        psw = document.querySelector('#psw'),
+        btn = document.querySelector('#btn');
+        btn.onclick = function () {
+            var str = inp.value;
+            var str2 = psw.value;
+            var reg = /^1[356789]\d{9}$/;
+            // if(reg.test(str)){
+            //     alert('合法')
+            // }else{
+            //     alert('不合法')
+            // }
+            // 先判断是否有大写字母 然后 小写字母 然后 数字
+            var bol = /[A-Z]/.test(str2) && /[a-z]/.test(str2) && /\d/.test(str2);
+            // 还得判断长度
+            var bol2 = str2.length >= 8 && str2.length <= 20;
+            if(bol && bol2){
+                alert('密码合法')
+            }else{
+                alert('密码不合法')
+            }    
+        }
+</script>
+<script>
+    
+    //1、 编写一个可以验证有效数字的正则；
+    // 有效数字符合哪些规则？ 可以是整数 小数； 整数.小数部分 没有小数部分 就是整数
+    // + - 有可能出现
+    // 整数部分 多位时 零 不能开头；
+
+    // .123
+    // 12..23
+    // 12.12.12
+    // 12
+    // 12.3
+    // 12.00
+
+
+    // var reg = /^(-|+)?\d+(\.\d+)?$/
+    // var reg = /^[-+]?\d+(\.\d+)?$/
+    var reg = /^[-+]?(([1-9]\d*)|0)(\.\d+)?$/
+    console.log(reg.test('.123') )// false
+    console.log(reg.test('12..23'))//false
+    console.log(reg.test('12.12.12'))//false
+    console.log(reg.test('12') )// true
+    console.log(reg.test('12.00') )// true
+
+
+    // 2、验证手机号码
+    // 1开头 第二位是 3 5 6 7 8 9 
+    // 11位
+    // 其他无要求
+    var reg = /^1(3|5|6|7|8|9)\d{9}$/
+    var reg = /^1[356789]\d{9}$/
+    var reg = /^1[356789]5\d{8}$/
+
+    // 3、验证QQ邮箱的正则
+　　//  前边是QQ号码
+    //  后边是 @qq.com
+    var reg = /^[1-9]\d{4,10}@qq\.com$/
+    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+
+    // 4、验证身份证号码的
+    //  18位  最后一位可能是 X
+    var reg = /^[1-9]\d{5}\d{4}\d{2}\d{2}\d{2}\d(\d|X)$/
+    console.log(reg.test());
+
+    // 5、验证密码的正则
+    //   6-16位
+    //  得是 数字 字母 或者  下划线
+    var reg = /^\w{6,16}$/
+    
+    //  8-20位  必须有 大写 和 小写 还得有数字
+</script>
