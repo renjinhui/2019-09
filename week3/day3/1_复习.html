@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //元字符 特殊含义元字符  量词元字符 + ? * {}  
+    // i   m   g
+
+    // 匹配 test
+    // 匹配一个有效年龄  18-65   使用正则编写
+    // 直接用【18-65】 解析出来的是 1 或者 8到6 或者5  ;这不是我们要的，所以我们选择了分段处理
+    // 18-19  1[89]
+    // 20-59  [2-5]\d
+    // 60-65  6[0-5]
+    // var reg = /[18-65]/;
+    var reg = /^(1[89]|[2-5]\d|6[0-5])$/
+
+    // 捕获 exec  加上全局修饰符g的时候； 每次匹配或者捕获的时候 都会修改 正则 的 lastIndex 属性
+    var str = '珠峰2019培训2020';
+    var reg2 = /\d+/g;
+    // reg2.test(str);
+    // reg2.test(str);
+    // console.log(reg2.exec(str))
+    // console.log(reg2.exec(str))
+
+    RegExp.prototype.execAll = function(str){
+        // this 就是对应的正则
+        if(!this.global){
+            throw new Error('缺少 修饰符 g');
+            return;
+        }
+        str = str.toString();
+        var res = this.exec(str);
+        var ary = [];
+        while(res){
+            ary.push(res);
+            res = this.exec(str);
+        }
+        return ary;
+    }
+    console.log(reg2.execAll(str));
+
+    var str = '珠峰2019哈哈2020';// 只要 哈哈 后边的数字
+    var reg = /哈哈(\d+)/
+
+
+    var str = "[object Undefined]";// 编写一个正则 从这个正则把 object 这个单词后边的单词获取到
+    var reg = / (\w+)/; // 前边是空格 这个规律
+    var reg2 = /\[object (\w+)\]/
+    var reg3 = /[A-Z]\w+/; // 用的是首字母大写的这个规律
+    console.log(reg3.exec(str))
+
+</script>

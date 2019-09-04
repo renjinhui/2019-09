@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var str = '珠峰2019培训2020';
+    var reg = /\d+/g;
+    str.match(reg); // ['2019','2020']
+
+    // 当正则 有 修饰符 g 的时候
+    // match的优点是 一次性可以把所有符合大正则的内容全部捕获到；
+    //        缺点是 不能捕获小分组
+
+    //使用match 或者 url上的参数
+    var url = 'http://baidu.com?ha=666&he=777&hei=999';
+    var reg = /([^?=&]+)=([^?=&]+)/g;
+    var ary = url.match(reg);//[ha=666,he=777,hei=999]
+    console.log(ary);// 接下来 我们要么使用 split进行分割 要么 接着使用正则捕获；
+    var obj = {};
+    ary.forEach(item=>{
+        // item :   ha=666
+        let reg2 = /([^?=&]+)=([^?=&]+)/;
+        let a = reg2.exec(item);// [ha=666,ha,666]
+        // debugger;
+        obj[a[1]] = a[2]
+    })
+    console.log(obj)
+</script>

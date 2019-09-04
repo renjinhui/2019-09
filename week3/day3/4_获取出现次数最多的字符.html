@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 如何获取一个字符串中出现次数最多的字符及其次数？？
+
+    var str = 'dgfdfgsfgt3tdrgsdfgw45sdfsw4sghsrtert4';
+    var obj = {};
+    for(var i = 0; i < str.length ;i++){
+        if(obj.hasOwnProperty(str[i])){
+            obj[str[i]] += 1
+        }else{
+            obj[str[i]] = 1
+        }
+    }
+    console.log(obj);
+
+    var reg = /(\w)(\w)\1/;// \几 就代表第几个小分组的内容
+    reg.test('abb') // false
+    reg.test('aba')// true
+
+    var reg = /(\w)\1(\w)/;
+    reg.test('abb') // false
+    reg.test('aba')// false
+
+    var reg = /(\w)(\w)\2/;
+    reg.test('abb') // true
+    reg.test('aba')// false
+
+    var reg = /(\w)(\w)\1\2/;
+    reg.test('abbb') // false
+    reg.test('aaaa') // true
+    reg.test('abab') // true
+
+    //2、 使用正则
+    var str = 'dgfdfgsfgt3tdrgsdfgw45sdfsw4sghsrtert4';
+    var obj = {};
+    str = str.split('').sort((a,b)=>a.localeCompare(b)).join('');
+    console.log(str)
+    var reg = /(\w)\1*/g;
+    // 2_1 使用match
+    var ary = str.match(reg);
+    ary.sort((a,b)=>b.length-a.length)
+    console.log(ary[0],ary[0].length);
+    // 2_2 使用replace
+    str.replace(reg,(x,y)=>{
+        console.log(x,y)
+        obj[y] = x.length
+    })
+    console.log(obj);
+
+
+</script>
