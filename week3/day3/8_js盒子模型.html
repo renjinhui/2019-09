@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            list-style: none
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            border: 10px solid salmon;
+            padding: 20px;
+            margin:  30px auto;
+            overflow: scroll
+        }
+        section{
+            position: relative;
+            margin: 100px;
+            background: skyblue;
+            padding-top: 60px;
+            border: 20px solid saddlebrown;
+
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+                珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰珠峰
+        </div>
+    </section>
+    
+</body>
+</html>
+<script>
+    // css 盒子模型 width padding border  margin
+    // JS 的盒子模型  client  offset   scroll
+    var oDiv = document.getElementsByTagName('div')[0];
+    console.log(oDiv.clientWidth) // width + 左右padding
+    console.log(oDiv.clientHeight) // height + 上下padding
+    console.log(oDiv.clientLeft) // 左边框的宽度
+    console.log(oDiv.clientTop) // 上边框的宽度
+
+    console.log('====================================')
+    console.log(oDiv.offsetWidth)// width + 左右padding + 左右border
+    console.log(oDiv.offsetHeight)
+    console.log(oDiv.offsetTop)// 当前元素的外边框到上级参照物内边框的距离
+    console.log(oDiv.offsetLeft)// 上级参照物 就是指的 有定位的上级元素
+    console.log(oDiv.offsetParent) // 上级参照物 都没有定位时 直接找到了body
+
+    // 给一个元素 怎么能算出 当前元素到body的偏移量
+    function offset(ele){
+        let obj = {
+            l:0,
+            t:0
+        }
+        obj.l = ele.offsetLeft;
+        obj.t = ele.offsetTop;
+        ele = ele.offsetParent;
+        while(ele){
+            obj.l += ele.offsetLeft + ele.clientLeft;// 在原有基础上再把 当前元素到上级参照物的距离和当前元素的border值 加上
+            obj.t += ele.offsetTop + ele.clientTop;
+            ele = ele.offsetParent;
+        }
+        return obj
+    }
+    console.log(offset(oDiv));
+
+    console.log('==============================================')
+    console.log(oDiv.scrollWidth)// 内容不溢出  等同于 client; 若溢出 左padding+内容宽度
+    console.log(oDiv.scrollHeight)// 内容不溢出  等同于 client; 若溢出 上padding+内容高度
+    console.log(oDiv.scrollLeft)// 左边卷去内容的宽度
+    console.log(oDiv.scrollTop)// 上边卷去内容的高度
+
+    // 以上13个属性中  只有scrollLeft和scrollTop是可以修改的 这两个属性是有最大值和最小值的
+    // 其他属性都是只读属性；
+
+    // 获取一个屏幕的宽高
+    document.documentElement.clientWidth || document.body.clientWidth
+    document.documentElement.clientHeight || document.body.clientHeight
+
+</script>

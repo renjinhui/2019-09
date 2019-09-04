@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // '1212313' ===> '1,212,313'
+
+    // 索引是 模3得2的位置添加一个 ,
+    var str = '1234345345';
+    var s = ''
+    for(var i = 0 ; i < str.length; i++){
+        if(i%3==2){
+            s += str[i]+','
+        }else{
+            s += str[i]
+        }
+    }
+    console.log(s)
+
+
+    var str = '1234345345';
+    str = str.split('').reverse().join('');// 字符串反转
+    var res = str.replace(/\d{3}/g,function(a){
+        return a+','
+    })
+    res = res.split('').reverse().join('');
+    console.log(res);
+
+
+
+    var str = '1234345345';
+    /*  
+        /\d{1,3}(?=(\d{3})+$)/g
+        前边是1到3位数字  后边必须是 3位3位的整数个数字
+        1 234  345 345  满足
+        12 343 453 45   不满足
+        123  434 534 5  不满足
+        1 234 345 345
+    */
+    var res = str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(...arg){
+        console.log(arg)
+        return arg[0]+','
+    })
+    console.log(res)
+
+    //3、 数字.toLocalString()
+</script>
