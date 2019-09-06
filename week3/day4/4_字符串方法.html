@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // split 
+    var str = 'df-dffg-342-dg=4234,dg3;345e,ert_ertet';
+    // 要求 以 -  = , ; _ 分割
+    var ary = str.split(/[-=,;_]/);
+    console.log(ary);
+
+    // match
+    // 使用match时 正则加不加g 有什么区别？？
+    // 加g 可以获取全部，不能捕获小分组
+    // 不加g等同于 exec
+    var str = '珠峰2019珠峰2020';
+    var reg = /\d+/g;
+    console.log(str.match(reg))
+    console.log(str.match(reg))
+    function getParam(str) {
+        var reg = /([^?=&]+)=([^?=&]+)/g;
+        var ary = str.match(reg);
+        var obj = {};
+        ary.forEach(item=>{
+            // item ==>  a=123    bb = 345   ccc=666
+            var a = item.split('=');
+            var m = a[0],n=a[1];
+            obj[m] = n;
+        })
+        return obj
+    }
+
+    // 思考 把这个方法放置到字符串的原型上；
+    var str = 'htpp://baidu.com?a=123&bb=345&ccc=666';
+    var res = getParam(str);
+    console.log(res)
+
+
+
+    //replace 比 match的优势是 及时有g；也能实现小分组的捕获
+    //str.replace('a','b')
+    //str.replace(/a/g,'b')
+    //str.replace(/a/g,function(){})
+    var str = '珠峰zf培训px';
+    str = str.replace(/\w+/g,c=>c.toUpperCase())
+    console.log(str)
+</script>

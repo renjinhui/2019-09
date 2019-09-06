@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 2000px;
+            background: -webkit-linear-gradient(#fff,red,gold,blue,#fff)
+        }
+        #btn{
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>
+
+    </div>
+    <button id='btn'>回到顶部</button>
+</body>
+</html>
+<script>
+    var btn = document.getElementById('btn');
+    // 卷去一屏之后再去显示 button按钮
+    // 一屏的高度是  
+    var winH = document.documentElement.clientHeight || document.body.clientHeight;
+    // 用屏幕卷去的高度 document.documentElement.scrollTop 跟 一屏的高度比较
+    // 什么时候去比较？？
+    window.onscroll = function(){
+        // 监听屏幕的滚动事件
+        console.log(document.documentElement.scrollTop)
+        var scrH = document.documentElement.scrollTop;
+        if(scrH > winH){
+            btn.style.display = 'block'
+        }else{
+            btn.style.display = 'none'
+        }
+    }
+
+    var timer = null;
+    btn.onclick = function(){
+        timer = setInterval(function () {
+            if(document.documentElement.scrollTop <= 0){
+                clearInterval(timer);
+            }
+            document.documentElement.scrollTop -= 30;
+        },20)
+        // document.documentElement.scrollTop = 0;
+    }
+</script>

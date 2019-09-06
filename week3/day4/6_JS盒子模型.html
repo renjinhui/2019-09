@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: #eee;
+        }
+        main{
+            width: 600px;
+            height: 600px;
+            border: 20px solid saddlebrown;
+            padding: 10px;
+            position: relative;
+            margin: 50px auto
+        }
+        #box{
+            width: 400px;
+            height: 100px;
+            background: #ccc;
+            padding: 10px;
+            border: 20px dashed darkcyan;
+            margin: 30px auto;
+            transform: translateY(30px);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <main>
+            <div id="box">
+                    S盒子模型的三个系列  client   offset   scroll
+                    S盒子模型的三个系列  client   offset   scroll
+                    S盒子模型的三个系列  client   offset   scroll
+                    vS盒子模型的三个系列  client   offset   scroll
+                    S盒子模型的三个系列  client   offset   scroll
+                    S盒子模型的三个系列  client   offset   scroll
+                    S盒子模型的三个系列  client   offset   scroll
+                    S盒子模型的三个系列  client   offset   scroll
+            </div>
+    </main>
+    
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    // JS 盒子模型；
+    // JS盒子模型的三个系列  client   offset   scroll
+
+    // client 系列
+    console.log(box.clientWidth)// width + 左右padding
+    console.log(box.clientHeight)
+    console.log(box.clientLeft) // 左boder
+    console.log(box.clientTop)  // 上border
+
+    //offset 系列
+    console.log(box.offsetWidth) // clientWidth + 左右border
+    console.log(box.offsetHeight)
+    console.log(box.offsetLeft)//当前盒子的外边框到上级参照物的内边框的距离
+    console.log(box.offsetTop,666666)
+    console.log(box.offsetParent);// 上级参照物（有定位的哪个上级元素）
+    // 上级参照物 最多到body ;body的上级参照物 是 null;
+
+    function offset(ele) {
+        // 获取该元素 到 body的上 和 左 的距离
+        var temp = ele.offsetParent;
+        var obj = {
+            left:ele.offsetLeft,
+            top:ele.offsetTop
+        }
+        while (temp) {
+            obj.left += temp.offsetLeft + temp.clientLeft;
+            obj.top += temp.offsetTop + temp.clientTop;
+            temp = temp.offsetParent;
+        }
+        return obj;
+    }
+
+    // scroll 系例 
+    // 内容不溢出  等同于 clientWidth
+    // 内容溢出时，但是没有overflow属性，盒子的上padding+内容的高度；
+    // 内容溢出  但是有overflow属性     盒子的上下padding+内容的高度
+    console.log('---------------------------s')
+    console.log(box.scrollWidth)
+    console.log(box.scrollHeight)
+    console.log(box.scrollTop) // 卷去内容的高度
+    console.log(box.scrollLeft) //  卷去内容的宽度
+
+    // 以上13个属性 只有 scrollTop scrollLeft 是可以设置的  ，其他的都是只读属性；
+    // scrollTop  scrollLeft 有边界值
+</script>
