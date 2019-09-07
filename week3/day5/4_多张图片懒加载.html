@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            height: 2000px;
+            background: #eee;
+        }
+
+        #box {
+            /* width: 300px; */
+            /* height: 300px; */
+            position: relative;
+            top: 1600px;
+            border: 1px dashed salmon
+        }
+
+        img {
+            width: 300px;
+            height: 300px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+        <img src="./default.gif" realSrc='./1.webp' alt="">
+    </div>
+</body>
+
+</html>
+<script src="./utils.js"></script>
+<script>
+    var {
+        offset,
+        winH
+    } = utils;
+    var img = document.getElementById('img');
+
+    function loadImg(ele) {
+        if (ele.loaded) return;
+        let scrT = document.documentElement.scrollTop; // 卷去的高度
+        let winh = winH();
+        let tarT = offset(ele).t; // 当前元素到body的偏移量；
+        if (scrT + winh > tarT) {
+            console.log(111)
+            let realSrc = ele.getAttribute('realSrc');
+            let temp = new Image(); // 创造了一个img标签
+            temp.src = realSrc; //使用的临时创造的img去远程服务器获取真实的图片
+            temp.onload = function () {
+                ele.src = realSrc;
+                temp = null;
+                fadeIn(ele);
+            }
+            ele.loaded = true; // 自定义一个loaded属性，用来记录这个元素的加载情况
+        }
+    };
+
+    window.onscroll = function () {
+        //    loadImg(img);
+        loadAll()
+    }
+
+    function loadAll() {
+        // 多张图片的懒加载 就是对每一个图片实行一下 loadImg;
+        var imgs = document.getElementsByTagName('img');
+        for (var i = 0; i < imgs.length; i++) {
+            loadImg(imgs[i])
+        }
+    }
+
+    function fadeIn(ele) {
+        ele.style.opacity = 0;
+        let a = 0;
+        ele.timer = setInterval(() => {
+            a += 0.1;
+            if (a >= 1) {
+                clearInterval(ele.timer);
+                a = 1;
+            }
+            ele.style.opacity = a;
+        }, 20)
+    }
+</script>
