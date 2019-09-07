@@ -41,6 +41,14 @@ img{
 }
 .pic_box{
     background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    transition: transform 0.5s;
+}
+.pic_box:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 7px 11px 6px #ccc;
 }
 .pic_box .desc{
     font-size: 14px;
